@@ -2,24 +2,6 @@
 version: 2.1
 
 jobs:
-  # Job one with a unique name
-  say_hello:
-    docker:
-     - image: cimg/base:2022.05
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - run: echo "Say hello to YAML!"
-  # Job two with a unique name
-  say_goodbye:
-    docker:
-     - image: cimg/base:2022.05
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - run: echo "Say goodbye to YAML!"
   # print hello
   print_hello:
     docker:
@@ -42,13 +24,9 @@ jobs:
 
 workflows:
   # Name of workflow
-  hello_and_goodbye:
   hello_and_world:
     # List of jobs that will run
     jobs:
-      - say_hello
-      - say_goodbye
-
       - print_hello
       - print_world
         - requires:
